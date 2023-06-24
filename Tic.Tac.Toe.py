@@ -77,12 +77,29 @@ def printBoard(board):
 def playMove(board,players,tossWinnerIndex):
     print(players[tossWinnerIndex],"will take move now")
     row=int(input("Choose Row where you want to put your bet:"))
-    column=int(input("Choose Column where you want to put your bet :"))
-    if tossWinnerIndex==1:
-        board [row-1][column-1]="X"
-    else:
-        board[row-1][column-1]="O"
+    ## Row checking
+    while True:
+     if row>3:
+        print(" Enter Correct Row Number (1-3)")
+        row=int(input("Choose Row where you want to put your bet:"))
+     if row<4:
+        break  
+    ## Row end
 
+    ## Column Checking
+    column=int(input("Choose Column where you want to put your bet :"))
+    while True:
+     if column>3:
+        print("Enter Correct Column Number (1-3)")
+        column=int(input("Choose Row where you want to put your bet:"))
+     if column<4:
+         break   
+    ## Column end
+
+    if tossWinnerIndex==1:
+     board [row-1][column-1]="X"
+    else:
+     board[row-1][column-1]="O"  
     printBoard(board)    
 
 def whoWillStart():
@@ -133,5 +150,4 @@ while True:
            playerInGame=restartGame(board,players,whoStarted)
            whostarted=playerInGame
            
-   
-# Game loop end
+   # Game Loop
