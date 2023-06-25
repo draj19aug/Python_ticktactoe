@@ -1,12 +1,17 @@
 import random
 ## Function
 
+def checkOverLap(board,row,column):
+    if board[row-1][column-1] == "":
+        return False
+    else:
+        return True
+        
 def restartGame(board,players,whoStarted):
     initializeBoard(board)
     whoStarted=togglePlayer(whoStarted)
     print("In this game",players[whoStarted],"will start the game")
     return whoStarted
-
 
 def announceResult(state,players):
     if states[state] =="Draw":
@@ -19,8 +24,6 @@ def announceResult(state,players):
 
     playMore = int(input("Do you want to Play more - (0/1) : - "))
     return playMore
-
-
 
 def togglePlayer(playerIngame):
     if playerInGame ==1:
@@ -55,8 +58,6 @@ def checkBoard(board):
                 return 0
     return 1
         
-            
-              
 def printBoard(board):
     cellstr=""
     print("..........")
@@ -76,7 +77,7 @@ def printBoard(board):
 
 def playMove(board,players,tossWinnerIndex):
     print(players[tossWinnerIndex],"will take move now")
-    row=int(input("Choose Row where you want to put your bet:"))
+    x=row =int(input("Choose Row where you want to put your bet:"))
     ## Row checking
     while True:
      if row>3:
@@ -99,7 +100,8 @@ def playMove(board,players,tossWinnerIndex):
     if tossWinnerIndex==1:
      board [row-1][column-1]="X"
     else:
-     board[row-1][column-1]="O"  
+      board[row-1][column-1]="O"
+
     printBoard(board)    
 
 def whoWillStart():
@@ -113,7 +115,7 @@ def initializeBoard(board):
 
 def startGame(board,players,tossWinnerIndex):
     initializeBoard(board)
-    players[1]=input("enter name of the Player 1 (symbol X):")
+    players[1]=input("Enter name of the Player 1 (symbol X):")
     players[2]=input("Enter name of the player 2(symbol O):")
     print(players[tossWinnerIndex],"won the toss, So",players[tossWinnerIndex],"will start the first")
     print()
@@ -129,16 +131,15 @@ states=["Play","Draw","Player1","Player2"]
 state=0
 whoStarted=0
 playerInGame=whoWillStart()
-# Varibles end
-
 whoStarted=playerInGame
+lappingState=["","","Overlapping"]
+## Variables Ends
 startGame(board,players,whoStarted)
-
 # Game Loop
 while True:
+   
    playMove(board,players,playerInGame)
    state=checkBoard(board)
-#    print(state)
    if state==0:
      playerInGame=togglePlayer(playerInGame)
    else:
@@ -149,5 +150,4 @@ while True:
        else:
            playerInGame=restartGame(board,players,whoStarted)
            whostarted=playerInGame
-           
-   # Game Loop
+# Game Loop End
