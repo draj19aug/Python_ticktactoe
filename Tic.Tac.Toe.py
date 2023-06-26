@@ -77,25 +77,32 @@ def printBoard(board):
 
 def playMove(board,players,tossWinnerIndex):
     print(players[tossWinnerIndex],"will take move now")
-    x=row =int(input("Choose Row where you want to put your bet:"))
+   
     ## Row checking
-    while True:
-     if row>3:
-        print(" Enter Correct Row Number (1-3)")
-        row=int(input("Choose Row where you want to put your bet:"))
-     if row<4:
-        break  
-    ## Row end
+    while True : 
+        while True:
+         row =int(input("Choose Row where you want to put your bet:"))
+         if row>3:
+            print(" Enter Correct Row Number (1-3)")
+            row=int(input("Choose Row where you want to put your bet:"))
+         if row<4:
+            break  
+        ## Row end
 
-    ## Column Checking
-    column=int(input("Choose Column where you want to put your bet :"))
-    while True:
-     if column>3:
-        print("Enter Correct Column Number (1-3)")
-        column=int(input("Choose Row where you want to put your bet:"))
-     if column<4:
-         break   
-    ## Column end
+        ## Column Checking
+        column=int(input("Choose Column where you want to put your bet :"))
+        while True:
+          if column>3:
+            print("Enter Correct Column Number (1-3)")
+            column=int(input("Choose Row where you want to put your bet:"))
+          if column<4:
+            break   
+        ## Column end
+        if(checkOverLap(board,row,column)):
+            print("This cell is already occupied, pls enter diffent row/column: ")
+        else:
+            break
+
 
     if tossWinnerIndex==1:
      board [row-1][column-1]="X"
