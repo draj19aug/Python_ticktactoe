@@ -1,5 +1,11 @@
 import random
 ## Function
+def parseInt(num):
+    try:        
+        z= int(num)
+        return num
+    except ValueError:
+        return None
 
 def checkOverLap(board,row,column):
     if board[row-1][column-1] == "":
@@ -80,21 +86,25 @@ def playMove(board,players,tossWinnerIndex):
    
     ## Row checking
     while True : 
+        
         while True:
-         row =int(input("Choose Row where you want to put your bet:"))
+         xrow =parseInt(input("Choose Row where you want to put your bet:"))
+         row =int(xrow or 4) 
          if row>3:
             print(" Enter Correct Row Number (1-3)")
-            row=int(input("Choose Row where you want to put your bet:"))
+            # row=int(input("Choose Row where you want to put your bet:"))
          if row<4:
             break  
         ## Row end
 
         ## Column Checking
-        column=int(input("Choose Column where you want to put your bet :"))
+        
         while True:
+          xcolumn=parseInt(input("Choose Column where you want to put your bet :"))
+          column =int(xcolumn or 4)
           if column>3:
             print("Enter Correct Column Number (1-3)")
-            column=int(input("Choose Row where you want to put your bet:"))
+            # column=int(input("Choose ciolumn where you want to put your bet:"))
           if column<4:
             break   
         ## Column end
