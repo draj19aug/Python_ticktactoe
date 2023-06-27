@@ -145,7 +145,7 @@ def startGame(board,players,tossWinnerIndex):
      if (checkerName(players)):
         print("This name is already occupied")
         players[2]=input("Enter name of the player 2(symbol O):")
-        break
+     break
     print(players[tossWinnerIndex],"won the toss so he will start first")
 ## Function End
 
