@@ -1,5 +1,12 @@
 import random
 ## Function
+
+def checkerName(players):
+    if players[1].upper()== players[2].upper():
+        return True
+    else:
+        False
+
 def parseInt(num):
     try:        
         z= int(num)
@@ -91,7 +98,7 @@ def playMove(board,players,tossWinnerIndex):
          xrow =parseInt(input("Choose Row where you want to put your bet:"))
          row =int(xrow or 4) 
          if row>3:
-            print(" Enter Correct Row Number (1-3)")
+            print(" Enter Corrct Row Number (1-3)")
             # row=int(input("Choose Row where you want to put your bet:"))
          if row<4:
             break  
@@ -134,8 +141,12 @@ def startGame(board,players,tossWinnerIndex):
     initializeBoard(board)
     players[1]=input("Enter name of the Player 1 (symbol X):")
     players[2]=input("Enter name of the player 2(symbol O):")
-    print(players[tossWinnerIndex],"won the toss, So",players[tossWinnerIndex],"will start the first")
-    print()
+    while True:
+     if (checkerName(players)):
+        print("This name is already occupied")
+        players[2]=input("Enter name of the player 2(symbol O):")
+        break
+    print(players[tossWinnerIndex],"won the toss so he will start first")
 ## Function End
 
 
@@ -149,12 +160,11 @@ state=0
 whoStarted=0
 playerInGame=whoWillStart()
 whoStarted=playerInGame
-lappingState=["","","Overlapping"]
 ## Variables Ends
 startGame(board,players,whoStarted)
 # Game Loop
-while True:
-   
+
+while True:   
    playMove(board,players,playerInGame)
    state=checkBoard(board)
    if state==0:
@@ -163,7 +173,6 @@ while True:
        playmore=announceResult(state,players) 
        if playmore==0:
            print("Thanks for playing")
-           break
        else:
            playerInGame=restartGame(board,players,whoStarted)
            whostarted=playerInGame
